@@ -1,0 +1,22 @@
+//LYI6892Z JOB (0844,00000000),'TEST EXECUTION- XXX ',                                                                                   
+//             CLASS=T,PRTY=15,                                                                                                          
+//             REGION=0K,                                                                                                                
+//             MSGCLASS=X,                                                                                                               
+//             NOTIFY=LYI6892                                                                                                            
+//SPLITBY EXEC PGM=ICEMAN                                                                                                                
+//SYSOUT DD SYSOUT=*                                                                                                                     
+//SORTIN DD DSN=LYI6892.U13280.PATI.D180503.REC55,DISP=DHR                                                                               
+//01  DD DSN=LYI6892.U13280.PATI.D180503.REC55.S1,                                                                                       
+//            DISP=(,CATLG),                                                                                                             
+//             SPACE=(TRK,(30,10),RLSE),                                                                                                 
+//             UNIT=SYSDA,                                                                                                               
+//             DCB=(RECFM=FB,LRECL=240,BLKSIZE=0,DSORG=PS)                                                                               
+//02  DD DSN=LYI6892.U13280.PATI.D180503.REC55.S2,                                                                                       
+//             DISP=(,CATLG),                                                                                                            
+//             SPACE=(TRK,(30,10),RLSE),                                                                                                 
+//             UNIT=SYSDA,                                                                                                               
+//             DCB=(RECFM=FB,LRECL=240,BLKSIZE=0,DSORG=PS)                                                                               
+//SYSIN DD *                                                                                                                             
+   SORT FIELDS=COPY                                                                                                                      
+   OUTFIL FNAMES=(01,02),SPLITBY=3548                                                                                                    
+ /*                                                                                                                                      

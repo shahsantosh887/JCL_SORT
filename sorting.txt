@@ -1,0 +1,41 @@
+//LYI6892Z JOB (0844,00000000),'13280',                                 
+//             CLASS=T,PRTY=15,                                                                                                          
+//             REGION=0K,                                                                                                                
+//             MSGCLASS=X,                                                                                                               
+//             NOTIFY=LYI6892                                                                                                            
+//*OWNER SHAH, SANTOSH        N/A      
+//*OWNER SHAH, SANTOSH        N/A      N/A                                                                                               
+//JOBLIB    DD DSN=PROD.LOADLIB,DISP=SHR                                                                                                                                                                                              
+//STEP020   EXEC PGM=SORT                                                                                                       
+//SORTIN    DD DSN=TESTMR.UNT16946.PATI.JN13MR13,DISP=SHR                                                                        
+//SORTOUT   DD DSN=TESTMR.UNT16946.PATI.JN13MR13.R01.FOR2A3,                                                                 
+//             DISP=(,CATLG,DELETE),                                                                                            
+//             UNIT=SYSDA,                                                                                                      
+//             SPACE=(900,(950,900),RLSE)                                                                                        
+//SORTWK01 DD  SPACE=(CYL,(100)),UNIT=SYSDA                                                                                      
+//SORTWK02 DD  SPACE=(CYL,(100)),UNIT=SYSDA                                                                                     
+//SORTWK03 DD  SPACE=(CYL,(100)),UNIT=SYSDA                                                                                    
+//SORTWK04 DD  SPACE=(CYL,(100)),UNIT=SYSDA                                                                                      
+//SORTWK05 DD  SPACE=(CYL,(100)),UNIT=SYSDA                                                                                    
+//SORTWK06 DD  SPACE=(CYL,(100)),UNIT=SYSDA                                                                                  
+//SORTWK07 DD  SPACE=(CYL,(100)),UNIT=SYSDA                                                                             
+//SORTWK08 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK09 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK10 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK11 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK12 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK13 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK14 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK15 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK16 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK17 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SORTWK18 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             
+//SYSIN     DD *                                                        
+  SORT FIELDS=COPY                                                      
+  INCLUDE COND=(06,01,CH,EQ,C'2',OR,06,01,CH,EQ,C'3',OR,                
+                06,01,CH,EQ,C'4',OR,06,01,CH,EQ,C'5',OR,                
+                06,01,CH,EQ,C'6',OR,06,01,CH,EQ,C'7',OR,                
+                06,01,CH,EQ,C'8',OR,06,01,CH,EQ,C'9',OR,                
+                06,01,CH,EQ,C'0')                                                                                                        
+/*                                                                      
+//SYSOUT    DD SYSOUT=*                                                 
