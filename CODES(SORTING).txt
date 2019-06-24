@@ -1,0 +1,42 @@
+//LYI6892Z JOB (0844,00000000),'13280',                                 J0031790                                                         00010000
+//             CLASS=T,PRTY=15,                                                                                                          00020000
+//             REGION=0K,                                                                                                                00030000
+//             MSGCLASS=X,                                                                                                               00040000
+//             NOTIFY=LYI6892                                                                                                            00050000
+//*OWNER SHAH, SANTOSH        N/A      N/A                                                                                               00060000
+//*OWNER SHAH, SANTOSH        N/A      N/A                                                                                               00070000
+//JOBLIB    DD DSN=PROD.LOADLIB,DISP=SHR                                00070000                                                         00080000
+//**********SORT FOR INVALID PAT 2 OR 3 AT POSITION                                                                                      00390000
+//STEP020   EXEC PGM=SORT                                               00080000                                                         00400000
+//SORTIN    DD DSN=TESTMR.UNT16946.PATI.JN13MR13,DISP=SHR               00090012                                                         00410000
+//SORTOUT   DD DSN=TESTMR.UNT16946.PATI.JN13MR13.R01.FOR2A3,            00100012                                                         00420000
+//             DISP=(,CATLG,DELETE),                                    00110000                                                         00430000
+//             UNIT=SYSDA,                                              00120000                                                         00440000
+//             SPACE=(900,(950,900),RLSE)                               00130000                                                         00450000
+//SORTWK01 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00131000                                                         00460000
+//SORTWK02 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00132000                                                         00470000
+//SORTWK03 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00133000                                                         00480000
+//SORTWK04 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00134000                                                         00490000
+//SORTWK05 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00135000                                                         00500000
+//SORTWK06 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00136000                                                         00510000
+//SORTWK07 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00137000                                                         00520000
+//SORTWK08 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00138000                                                         00530000
+//SORTWK09 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139000                                                         00540000
+//SORTWK10 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139100                                                         00550000
+//SORTWK11 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139200                                                         00560000
+//SORTWK12 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139300                                                         00570000
+//SORTWK13 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139400                                                         00580000
+//SORTWK14 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139500                                                         00590000
+//SORTWK15 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139600                                                         00600000
+//SORTWK16 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139700                                                         00610000
+//SORTWK17 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139800                                                         00620000
+//SORTWK18 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139900                                                         00630000
+//SYSIN     DD *                                                        00140000                                                         00640000
+  SORT FIELDS=COPY                                                      00150000                                                         00650000
+  INCLUDE COND=(06,01,CH,EQ,C'2',OR,06,01,CH,EQ,C'3',OR,                00160012                                                         00660000
+                06,01,CH,EQ,C'4',OR,06,01,CH,EQ,C'5',OR,                00160012                                                         00670000
+                06,01,CH,EQ,C'6',OR,06,01,CH,EQ,C'7',OR,                00160012                                                         00680000
+                06,01,CH,EQ,C'8',OR,06,01,CH,EQ,C'9',OR,                00160012                                                         00690000
+                06,01,CH,EQ,C'0')                                                                                                        00691000
+/*                                                                      00523000                                                         00700000
+//SYSOUT    DD SYSOUT=*                                                 00530000                                                         00710000

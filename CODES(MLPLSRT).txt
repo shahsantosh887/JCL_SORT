@@ -1,0 +1,148 @@
+//LYI6892Z JOB (0844,00000000),'AP16JU16',                              J0067151                                                         00010000
+//             CLASS=T,PRTY=15,                                                                                                          00020000
+//             REGION=0K,                                                                                                                00030000
+//             MSGCLASS=X,                                                                                                               00040000
+//             NOTIFY=LYI6892                                                                                                            00050000
+//*OWNER SHAH, SANTOSH        N/A      N/A                                                                                               00060000
+//JOBLIB    DD DSN=PROD.LOADLIB,DISP=SHR                                00070000                                                         00070000
+//**************INPUT PAT FILE                                                                                                           00080000
+//STEP010   EXEC PGM=SORT                                               00080000                                                         00090000
+//SORTIN    DD DSN=TESTMR.UNT16946.PATI.AP16JU16,DISP=SHR               00090012                                                         00100000
+//SORTOUT   DD DSN=TEST.UNT16946.PATI.AP16JU16.REC01,                   00100012                                                         00110000
+//             DISP=(,CATLG,DELETE),                                    00110000                                                         00120000
+//             UNIT=SYSDA,                                              00120000                                                         00130000
+//             SPACE=(900,(950,900),RLSE)                               00130000                                                         00140000
+//SORTWK01 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00131000                                                         00150000
+//SORTWK02 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00132000                                                         00160000
+//SORTWK03 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00133000                                                         00170000
+//SORTWK04 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00134000                                                         00180000
+//SORTWK05 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00135000                                                         00190000
+//SORTWK06 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00136000                                                         00200000
+//SORTWK07 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00137000                                                         00210000
+//SORTWK08 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00138000                                                         00220000
+//SORTWK09 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139000                                                         00230000
+//SORTWK10 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139100                                                         00240000
+//SORTWK11 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139200                                                         00250000
+//SORTWK12 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139300                                                         00260000
+//SORTWK13 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139400                                                         00270000
+//SORTWK14 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139500                                                         00280000
+//SORTWK15 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139600                                                         00290000
+//SORTWK16 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139700                                                         00300000
+//SORTWK17 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139800                                                         00310000
+//SORTWK18 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139900                                                         00320000
+//SYSIN     DD *                                                        00140000                                                         00330000
+  SORT FIELDS=COPY                                                      00150000                                                         00340000
+  INCLUDE COND=(18,02,CH,EQ,C'01')                                      00160012                                                         00350000
+/*                                                                      00523000                                                         00360000
+//SYSOUT    DD SYSOUT=*                                                 00530000                                                         00370000
+//**********************************************************************00070000                                                         00380000
+//* SORTDUP    ** FLAG DUPLICATE                                        00080000                                                         00390000
+//**********************************************************************00090000                                                         00400000
+//SORTDUP  EXEC PGM=ICETOOL                                             00100000                                                         00410000
+//TOOLMSG  DD SYSOUT=*                                                  00110000                                                         00420000
+//DFSMSG   DD SYSOUT=*                                                  00120000                                                         00430000
+//SORTIN   DD DSN=TEST.UNT16946.PATI.AP16JU16.REC01,DISP=SHR            00130003                                                         00440000
+//SORTOUT1 DD DSN=TEST.UNT16946.PATI.AP16JU16.DISTINCT,                 00140003                                                         00450000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00150000                                                         00460000
+//            DCB=(RECFM=FB,LRECL=19,BLKSIZE=0)                         00160003                                                         00470000
+//SORTOUT2 DD DSN=TEST.UNT16946.PATI.AP16JU16.DUPLICT,                  00170003                                                         00480000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00180000                                                         00490000
+//            DCB=(RECFM=FB,LRECL=19,BLKSIZE=0)                         00190000                                                         00500000
+//TOOLIN   DD *                                                         00200000                                                         00510000
+  SELECT FROM(SORTIN) TO(SORTOUT1) ON(1,25,CH) FIRST DISCARD(SORTOUT2)  00210003                                                         00520000
+/*                                                                      00220000                                                         00530000
+//**********SORT FOR INVALID PAT 2 OR 3 AT POSITION                                                                                      00540000
+//STEP020   EXEC PGM=SORT                                               00080000                                                         00550000
+//SORTIN    DD DSN=TEST.UNT16946.PATI.AP16JU16.DISTINCT,DISP=SHR        00090012                                                         00560000
+//SORTOUT   DD DSN=TEST.UNT16946.PATI.AP16JU16.REC01.FOR2A3,            00100012                                                         00570000
+//             DISP=(,CATLG,DELETE),                                    00110000                                                         00580000
+//             UNIT=SYSDA,                                              00120000                                                         00590000
+//             SPACE=(900,(950,900),RLSE)                               00130000                                                         00600000
+//SORTWK01 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00131000                                                         00610000
+//SORTWK02 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00132000                                                         00620000
+//SORTWK03 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00133000                                                         00630000
+//SORTWK04 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00134000                                                         00640000
+//SORTWK05 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00135000                                                         00650000
+//SORTWK06 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00136000                                                         00660000
+//SORTWK07 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00137000                                                         00670000
+//SORTWK08 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00138000                                                         00680000
+//SORTWK09 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139000                                                         00690000
+//SORTWK10 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139100                                                         00700000
+//SORTWK11 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139200                                                         00710000
+//SORTWK12 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139300                                                         00720000
+//SORTWK13 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139400                                                         00730000
+//SORTWK14 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139500                                                         00740000
+//SORTWK15 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139600                                                         00750000
+//SORTWK16 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139700                                                         00760000
+//SORTWK17 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139800                                                         00770000
+//SORTWK18 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139900                                                         00780000
+//SYSIN     DD *                                                        00140000                                                         00790000
+  SORT FIELDS=COPY                                                      00150000                                                         00800000
+  INCLUDE COND=(06,01,CH,EQ,C'2',OR,06,01,CH,EQ,C'3',OR,                00160012                                                         00810000
+                06,01,CH,EQ,C'4',OR,06,01,CH,EQ,C'5',OR,                00160012                                                         00820000
+                06,01,CH,EQ,C'6',OR,06,01,CH,EQ,C'7',OR,                00160012                                                         00830000
+                06,01,CH,EQ,C'8',OR,06,01,CH,EQ,C'9')                   00160012                                                         00840000
+/*                                                                      00523000                                                         00850000
+//SYSOUT    DD SYSOUT=*                                                 00530000                                                         00860000
+//************SORT FOR NEW RECORDS *  STARTS WITH ZEROS                                                                                  00870000
+//STEP030   EXEC PGM=SORT                                               00080000                                                         00880000
+//SORTIN    DD DSN=TEST.UNT16946.PATI.AP16JU16.DISTINCT,DISP=SHR        00090012                                                         00890000
+//SORTOUT   DD DSN=TEST.UNT16946.PATI.AP16JU16.NEWPAT,                  00100012                                                         00900000
+//             DISP=(,CATLG,DELETE),                                    00110000                                                         00910000
+//             UNIT=SYSDA,                                              00120000                                                         00920000
+//             SPACE=(900,(950,900),RLSE)                               00130000                                                         00930000
+//SORTWK01 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00131000                                                         00940000
+//SORTWK02 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00132000                                                         00950000
+//SORTWK03 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00133000                                                         00960000
+//SORTWK04 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00134000                                                         00970000
+//SORTWK05 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00135000                                                         00980000
+//SORTWK06 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00136000                                                         00990000
+//SORTWK07 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00137000                                                         01000000
+//SORTWK08 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00138000                                                         01010000
+//SORTWK09 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139000                                                         01020000
+//SORTWK10 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139100                                                         01030000
+//SORTWK11 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139200                                                         01040000
+//SORTWK12 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139300                                                         01050000
+//SORTWK13 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139400                                                         01060000
+//SORTWK14 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139500                                                         01070000
+//SORTWK15 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139600                                                         01080000
+//SORTWK16 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139700                                                         01090000
+//SORTWK17 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139800                                                         01100000
+//SORTWK18 DD  SPACE=(CYL,(100)),UNIT=SYSDA                             00139900                                                         01110000
+//SYSIN     DD *                                                        00140000                                                         01120000
+  SORT FIELDS=COPY                                                      00150000                                                         01130000
+  OMIT COND=(06,01,CH,EQ,C'1',OR,06,01,CH,EQ,C'2',OR,                   00160012                                                         01140000
+             06,01,CH,EQ,C'3',OR,06,01,CH,EQ,C'4',OR,                   00160012                                                         01150000
+             06,01,CH,EQ,C'5',OR,06,01,CH,EQ,C'6',OR,                   00160012                                                         01160000
+             06,01,CH,EQ,C'7',OR,06,01,CH,EQ,C'8',OR,                   00160012                                                         01170000
+             06,01,CH,EQ,C'9')                                          00160012                                                         01180000
+/*                                                                      00523000                                                         01190000
+//SYSOUT    DD SYSOUT=*                                                 00530000                                                         01200000
+//******************FINDING DUP FROM POS 6-12*************                                                                               01210000
+//SORTDU2  EXEC PGM=ICETOOL                                             00100000                                                         01220000
+//TOOLMSG  DD SYSOUT=*                                                  00110000                                                         01230000
+//DFSMSG   DD SYSOUT=*                                                  00120000                                                         01240000
+//SORTIN   DD DSN=TEST.UNT16946.PATI.AP16JU16.DISTINCT,DISP=SHR         00130003                                                         01250000
+//SORTOUT1 DD DSN=TEST.UNT16946.PATI.AP16JU16.DIS6TO12,                 00140003                                                         01260000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00150000                                                         01270000
+//            DCB=(RECFM=FB,LRECL=17,BLKSIZE=0)                         00160003                                                         01280000
+//SORTOUT2 DD DSN=TEST.UNT16946.PATI.AP16JU16.DUP6TO12,                 00170003                                                         01290000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00180000                                                         01300000
+//            DCB=(RECFM=FB,LRECL=17,BLKSIZE=0)                         00190000                                                         01310000
+//TOOLIN   DD *                                                         00200000                                                         01320000
+  SELECT FROM(SORTIN) TO(SORTOUT1) ON(6,12,CH) FIRST DISCARD(SORTOUT2)  00210003                                                         01330000
+/*                                                                      00220000                                                         01340000
+//******************FINDING DUP FROM POS 7-12*************                                                                               01350000
+//SORTDU3  EXEC PGM=ICETOOL                                             00100000                                                         01360000
+//TOOLMSG  DD SYSOUT=*                                                  00110000                                                         01370000
+//DFSMSG   DD SYSOUT=*                                                  00120000                                                         01380000
+//SORTIN   DD DSN=TEST.UNT16946.PATI.AP16JU16.DISTINCT,DISP=SHR         00130003                                                         01390000
+//SORTOUT1 DD DSN=TEST.UNT16946.PATI.AP16JU16.DIS7TO12,                 00140003                                                         01400000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00150000                                                         01410000
+//            DCB=(RECFM=FB,LRECL=17,BLKSIZE=0)                         00160003                                                         01420000
+//SORTOUT2 DD DSN=TEST.UNT16946.PATI.AP16JU16.DUP67O12,                 00170003                                                         01430000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00180000                                                         01440000
+//            DCB=(RECFM=FB,LRECL=17,BLKSIZE=0)                         00190000                                                         01450000
+//TOOLIN   DD *                                                         00200000                                                         01460000
+  SELECT FROM(SORTIN) TO(SORTOUT1) ON(7,12,CH) FIRST DISCARD(SORTOUT2)  00210003                                                         01470000
+/*                                                                      00220000                                                         01480000

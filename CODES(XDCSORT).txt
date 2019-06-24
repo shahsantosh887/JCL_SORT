@@ -1,0 +1,61 @@
+//LYI6892Z JOB (0844,00000000),'TEST EXECUTION- XXX ',                  J0046032                                                         00010000
+//             CLASS=T,PRTY=15,                                                                                                          00020000
+//             REGION=0K,                                                                                                                00030000
+//             MSGCLASS=X,                                                                                                               00040000
+//             NOTIFY=LYI6892                                                                                                            00050000
+//*OWNER SHAH, SANTOSH        N/A      N/A                                                                                               00060000
+//*                  EXTRACT LAST MONTH DATA                  *                                                                          00070000
+//*************************************************************                                                                          00080000
+//STEP010  EXEC PGM=SORT                                                                                                                 00090000
+//SYSPRINT  DD SYSOUT=*                                                                                                                  00100000
+//SYSOUT    DD SYSOUT=*                                                                                                                  00110000
+//SYSUDUMP  DD DUMMY                                                                                                                     00120000
+//SORTIN    DD DSN=LYI6892.NCWA521.SYSOUT,                                                                                               00130000
+//             DISP=SHR                                                                                                                  00140000
+//SORTOUT   DD DSN=TEST.NCWA521.READ,                                                                                                    00150000
+//             DISP=(NEW,CATLG,DELETE),                                                                                                  00160000
+//             UNIT=SYSDA,                                                                                                               00170000
+//             DCB=(LRECL=80,BLKSIZE=27920,RECFM=FB),                                                                                    00180000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00190000
+//*                                                                                                                                      00200000
+//SORTWK01 DD  UNIT=SYSDA,                                                                                                               00210000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00220000
+//SORTWK02 DD  UNIT=SYSDA,                                                                                                               00230000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00240000
+//SORTWK03 DD  UNIT=SYSDA,                                                                                                               00250000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00260000
+//SORTWK04 DD  UNIT=SYSDA,                                                                                                               00270000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00280000
+//SORTWK05 DD  UNIT=SYSDA,                                                                                                               00290000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00300000
+//SYSIN    DD  *                                                                                                                         00310000
+  SORT FIELDS=COPY                                                                                                                       00320000
+  INCLUDE COND=(2,4,CH,EQ,C'READ')                                                                                                       00330000
+//*                                                                                                                                      00340000
+//*************************************************************                                                                          00350000
+//STEP020  EXEC PGM=SORT                                                                                                                 00360000
+//SYSPRINT  DD SYSOUT=*                                                                                                                  00370000
+//SYSOUT    DD SYSOUT=*                                                                                                                  00380000
+//SYSUDUMP  DD DUMMY                                                                                                                     00390000
+//SORTIN    DD DSN=LYI6892.NCWA521.SYSOUT,                                                                                               00400000
+//             DISP=SHR                                                                                                                  00410000
+//SORTOUT   DD DSN=TEST.NCWA521.WRITE,                                                                                                   00420000
+//             DISP=(NEW,CATLG,DELETE),                                                                                                  00430000
+//             UNIT=SYSDA,                                                                                                               00440000
+//             DCB=(LRECL=80,BLKSIZE=27920,RECFM=FB),                                                                                    00450000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00460000
+//*                                                                                                                                      00470000
+//SORTWK01 DD  UNIT=SYSDA,                                                                                                               00480000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00490000
+//SORTWK02 DD  UNIT=SYSDA,                                                                                                               00500000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00510000
+//SORTWK03 DD  UNIT=SYSDA,                                                                                                               00520000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00530000
+//SORTWK04 DD  UNIT=SYSDA,                                                                                                               00540000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00550000
+//SORTWK05 DD  UNIT=SYSDA,                                                                                                               00560000
+//             SPACE=(CYL,(5,10),RLSE)                                                                                                   00570000
+//SYSIN    DD  *                                                                                                                         00580000
+  SORT FIELDS=COPY                                                                                                                       00590000
+  INCLUDE COND=(2,4,CH,EQ,C'WRIT')                                                                                                       00600000
+//*                                                                                                                                      00610000

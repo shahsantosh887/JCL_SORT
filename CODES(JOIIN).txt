@@ -1,0 +1,21 @@
+//LYI6892A JOB (0844,00000000),'JOIN FILE ',                            J0050971                                                         00010000
+//             CLASS=T,PRTY=15,                                                                                                          00020000
+//             REGION=0K,                                                                                                                00030000
+//             MSGCLASS=X,                                                                                                               00040000
+//             NOTIFY=LYI6892                                                                                                            00050000
+//SORT       EXEC PGM=SORT                                              00070000                                                         00060000
+//SYSOUT     DD SYSOUT=*                                                                                                                 00070000
+//NF1   DD DSN=LYI6892.NOT.FOUND.F16946.JANMAR,DISP=SHR                 00111001                                                         00080000
+//NF2   DD DSN=TEST.UNT16946.PATI.AP16JU16.UNI,DISP=SHR                                                                                  00090000
+//SORTOUT   DD DSN=TEST.MATCH.FILE,                                                                                                      00100000
+//             DISP=(NEW,CATLG,DELETE),UNIT=SYSDA,                                                                                       00110000
+//             SPACE=(CYL,(100,200),RLSE)                                                                                                00120000
+//SYSIN      DD *                                                                                                                        00130000
+  SORT FIELDS=COPY                                                      00150000                                                         00140000
+  JOINKEYS F1=NF1,FIELDS=(1,12,A)                                                                                                        00150000
+  JOINKEYS F2=NF2,FIELDS=(6,12,A)                                                                                                        00160000
+  JOIN UNPAIRED,F1                                                                                                                       00170000
+  REFORMAT FIELDS=(F2:1,240)                                                                                                             00180000
+  OPTION COPY                                                                                                                            00190000
+  OUTFIL FNAMES=SORTOUT                                                                                                                  00200000
+/*                                                                                                                                       00210000

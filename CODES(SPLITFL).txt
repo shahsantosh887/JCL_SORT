@@ -1,0 +1,32 @@
+//LYI6892Z JOB (0844,00000000),'TEST EXECUTION- XXX ',                  J0024409                                                         00010000
+//             CLASS=T,PRTY=15,                                                                                                          00020000
+//             REGION=0K,                                                                                                                00030000
+//             MSGCLASS=X,                                                                                                               00040000
+//             NOTIFY=LYI6892                                                                                                            00050000
+//SPLITBY EXEC PGM=ICEMAN                                                                                                                00070000
+//SYSOUT DD SYSOUT=*                                                                                                                     00080000
+//SORTIN DD DSN=TESTMR.REC01.REC02.DT0922.U16910,DISP=SHR                                                                                00090000
+//D01  DD DSN=TESTMR.REC01.REC02.DT0922.U16910.S1,                                                                                       00100000
+//            DISP=(,CATLG),                                                                                                             00110000
+//             SPACE=(TRK,(30,10),RLSE),                                                                                                 00120000
+//             UNIT=SYSDA,                                                                                                               00130000
+//             DCB=(RECFM=FB,LRECL=240,BLKSIZE=0,DSORG=PS)                                                                               00140000
+//D02  DD DSN=TESTMR.REC01.REC02.DT0922.U16910.S2,                                                                                       00150000
+//             DISP=(,CATLG),                                                                                                            00160000
+//             SPACE=(TRK,(30,10),RLSE),                                                                                                 00170000
+//             UNIT=SYSDA,                                                                                                               00180000
+//             DCB=(RECFM=FB,LRECL=240,BLKSIZE=0,DSORG=PS)                                                                               00190000
+//D03  DD DSN=TESTMR.REC01.REC02.DT0922.U16910.S3,                                                                                       00200000
+//             DISP=(,CATLG),                                                                                                            00210000
+//             SPACE=(TRK,(30,10),RLSE),                                                                                                 00220000
+//             UNIT=SYSDA,                                                                                                               00230000
+//             DCB=(RECFM=FB,LRECL=240,BLKSIZE=0,DSORG=PS)                                                                               00240000
+//D04  DD DSN=TESTMR.REC01.REC02.DT0922.U16910.S4,                                                                                       00250000
+//             DISP=(,CATLG),                                                                                                            00260000
+//             SPACE=(TRK,(30,10),RLSE),                                                                                                 00270000
+//             UNIT=SYSDA,                                                                                                               00280000
+//             DCB=(RECFM=FB,LRECL=240,BLKSIZE=0,DSORG=PS)                                                                               00290000
+//SYSIN DD *                                                                                                                             00300000
+   SORT FIELDS=COPY                                                                                                                      00310000
+   OUTFIL FNAMES=(D01,D02,D03,D04),SPLITBY=200000                                                                                        00320000
+/*                                                                                                                                       00330000

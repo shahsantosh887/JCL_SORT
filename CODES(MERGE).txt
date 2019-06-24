@@ -1,0 +1,20 @@
+//LYI6892Z JOB (0844,00000000),'TEST EXECUTION- XXX ',                                                                                   00000100
+//             CLASS=T,PRTY=15,                                                                                                          00000200
+//             REGION=0K,                                                                                                                00000300
+//             MSGCLASS=X,                                                                                                               00000400
+//             NOTIFY=LYI6892                                                                                                            00000500
+//SORTTOOL EXEC PGM=SORT                                                                                                                 00010000
+//TOOLMSG DD SYSOUT=*                                                                                                                    00020000
+//DFSMSG DD SYSOUT=*                                                                                                                     00030000
+//SYSOUT DD SYSOUT=*                                                                                                                     00040000
+//SORTJNF1 DD DSN=TEST.UNT16946.PATI.AP16JU16.UNI,DISP=SHR                                                                               00050000
+//SORTJNF2 DD DSN=LYI6892.NOT.FOUND.F16946.JANMAR,DISP=SHR                                                                               00060000
+//SORTOUT DD DSN=LYI6892.MATCHED.FILE,                                                                                                   00070000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),                                                                       00071000
+//            DCB=(RECFM=FB,LRECL=240,BLKSIZE=0)                                                                                         00072000
+//SYSIN DD *                                                                                                                             00080000
+SORT FIELDS=COPY                                                                                                                         00090000
+JOINKEYS FILES=F1,FIELDS=(1,10,A)                                                                                                        00100000
+JOINKEYS FILES=F2,FIELDS=(1,10,A)                                                                                                        00110000
+REFORMAT FIELDS=(F1:1,80)                                                                                                                00120000
+/*                                                                                                                                       00130000

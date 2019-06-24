@@ -1,0 +1,22 @@
+//LYI6892A JOB (0844,00000000),'TEST EXECUTION- XXX ',                  J0039092                                                         00010000
+//             CLASS=T,PRTY=15,                                                                                                          00020000
+//             REGION=0K,                                                                                                                00030000
+//             MSGCLASS=X,                                                                                                               00040000
+//             NOTIFY=LYI6892                                                                                                            00050000
+//*OWNER SHAH, SANTOSH        N/A      N/A                                                                                               00060000
+//*OWNER SHAH, SANTOSH        N/A      N/A                                                                                               00070000
+//STEP01 EXEC PGM=SORT                                                  00060000                                                         00080000
+//SYSOUT DD SYSOUT=*                                                    00070000                                                         00090000
+//SYSPRIN DD SYSOUT=*                                                   00080000                                                         00100000
+//SORTIN  DD DSN=TEST.NCAPRLOD.OUTPUT.BEFORE,DISP=SHR                   00090034                                                         00110000
+//SORTOUT DD DSN=TESTNC.P###F0.NCAPRLOD.OUTPUT.BEFORE,                  00100034                                                         00120000
+//            DISP=(NEW,CATLG,DELETE),                                                                                                   00130000
+//            UNIT=DISK,                                                                                                                 00140000
+//            SPACE=(CYL,(10,10),RLSE),                                                                                                  00150000
+//            DCB=(LRECL=76,BLKSIZE=0,RECFM=FB)                                                                                          00160000
+//SYSIN DD *                                                            00170000                                                         00170000
+    SORT FIELDS=COPY                                                    00180000                                                         00180000
+    OUTREC FIELDS=(1:1,1,2:2,3,PD,TO=ZD,LENGTH=5,                       00181034                                                         00190000
+                   7:6,6,PD,TO=ZD,LENGTH=12,                            00181034                                                         00200000
+                   19:14,31)                                            00181034                                                         00210000
+/*                                                                      00220000                                                         00220000

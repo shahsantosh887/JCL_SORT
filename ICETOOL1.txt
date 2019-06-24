@@ -1,0 +1,17 @@
+//LYI6892Z JOB (0844,00000000),'TEST EXECUTION- XXX ',                                                                                   00001000
+//             CLASS=T,PRTY=15,                                                                                                          00001100
+//             REGION=0K,                                                                                                                00001200
+//             MSGCLASS=X,                                                                                                               00001300
+//             NOTIFY=LYI6892                                                                                                            00002000
+//TOOL     EXEC PGM=ICETOOL                                                                                                              00020000
+//TOOLMSG DD SYSOUT=*                                                                                                                    00030000
+//DFSMSG DD SYSOUT=*                                                                                                                     00040000
+//TOOLIN DD *                                                                                                                            00050000
+  COPY FROM(INPUT1) TO(OUTPUT) USING(CTL1)                                                                                               00060000
+/*                                                                                                                                       00070000
+//INPUT1 DD DSN=LYI6892.CASEMIX.PATNT.FILE,DISP=SHR                                                                                      00080000
+//OUTPUT DD DSN=TEST.CASEMIX.PATNT.FILE,                                                                                                 00090000
+//          DCB=(*.INPUT1)                                                                                                               00100000
+//CTL1CNTL DD *                                                                                                                          00110000
+ INCLUDE COND=(1,5,CH,EQ,C'13280')                                                                                                       00120000
+/*                                                                                                                                       00130000

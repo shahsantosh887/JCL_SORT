@@ -1,0 +1,18 @@
+//LYI6892Z JOB (0844,00000000),'TEST EXECUTION- XXX ',                                                                                   00010000
+//             CLASS=T,PRTY=15,                                                                                                          00010100
+//             REGION=0K,                                                                                                                00010200
+//             MSGCLASS=X,                                                                                                               00011000
+//             NOTIFY=LYI6892                                                                                                            00020000
+//SORTDUP  EXEC PGM=ICETOOL                                             00100000                                                         00090000
+//TOOLMSG  DD SYSOUT=*                                                  00110000                                                         00100000
+//DFSMSG   DD SYSOUT=*                                                  00120000                                                         00110000
+//SORTIN   DD DSN=LYI6892.U13280.PATI.D180614,DISP=SHR                  00130004                                                         00120000
+//SORTOUT1 DD DSN=LYI6892.U13280.PATI.D180614.REC55.UNIQUE,             00140004                                                         00130000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00150000                                                         00140000
+//            DCB=(RECFM=FB,LRECL=240,BLKSIZE=0)                        00160004                                                         00150000
+//SORTOUT2 DD DSN=LYI6892.U13280.PATI.D180614.REC55.DUPLI,              00170004                                                         00160000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),      00180000                                                         00170000
+//            DCB=(RECFM=FB,LRECL=240,BLKSIZE=0)                        00190004                                                         00180000
+//TOOLIN   DD *                                                         00200000                                                         00190000
+  SELECT FROM(SORTIN) TO(SORTOUT1) ON(1,17,CH) FIRST DISCARD(SORTOUT2)  00210000                                                         00200000
+/*                                                                      00220000                                                         00210000

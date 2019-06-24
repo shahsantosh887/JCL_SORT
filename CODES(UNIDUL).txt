@@ -1,0 +1,387 @@
+//OZE8352Z JOB (0844,00000000),'COMP REC01 WITH 55  ',                  J0028885                                                         00010000
+//             CLASS=T,PRTY=15,                                                                                                          00020000
+//             REGION=0K,                                                                                                                00030000
+//             MSGCLASS=X,                                                                                                               00040000
+//             NOTIFY=OZE8352                                                                                                            00050000
+//*OWNER BHARADWAJ, SHIVSHANK SYNTEL       2                                                                                             00060000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                00070000
+//STEP001  EXEC PGM=SORT                                                00030000                                                         00080000
+//SORTIN   DD  DSN=TEST.U16776.PATI.JAN2016,DISP=SHR                                                                                     00090000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI01.REC01.DT0221,                                                                                  00100000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          00110000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                00120000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            00130000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         00140000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         00150000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         00160000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         00170000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         00180000
+//SYSIN DD  *                                                           00240000                                                         00190000
+    SORT FIELDS=COPY                                                    00260000                                                         00200000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         00210000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'01',219X)                                                                                            00220000
+/*                                                                      00340000                                                         00230000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                00240000
+//STEP002  EXEC PGM=SORT                                                00030000                                                         00250000
+//SORTIN   DD  DSN=TEST.U16776.PATI.FEBMAR16,DISP=SHR                                                                                    00260000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI02.REC01.DT0221,                                                                                  00270000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          00280000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                00290000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            00300000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         00310000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         00320000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         00330000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         00340000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         00350000
+//SYSIN DD  *                                                           00240000                                                         00360000
+    SORT FIELDS=COPY                                                    00260000                                                         00370000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         00380000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'02',219X)                                                                                            00390000
+/*                                                                      00340000                                                         00400000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                00410000
+//STEP003  EXEC PGM=SORT                                                00030000                                                         00420000
+//SORTIN   DD  DSN=TEST.U16776.PATI.APRMAY16,DISP=SHR                                                                                    00430000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI03.REC01.DT0221,                                                                                  00440000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          00450000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                00460000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            00470000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         00480000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         00490000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         00500000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         00510000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         00520000
+//SYSIN DD  *                                                           00240000                                                         00530000
+    SORT FIELDS=COPY                                                    00260000                                                         00540000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         00550000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'03',219X)                                                                                            00560000
+/*                                                                      00340000                                                         00570000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                00580000
+//STEP004  EXEC PGM=SORT                                                00030000                                                         00590000
+//SORTIN   DD  DSN=TEST.U16776.PATI.JUNJUL16,DISP=SHR                                                                                    00600000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI04.REC01.DT0221,                                                                                  00610000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          00620000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                00630000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            00640000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         00650000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         00660000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         00670000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         00680000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         00690000
+//SYSIN DD  *                                                           00240000                                                         00700000
+    SORT FIELDS=COPY                                                    00260000                                                         00710000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         00720000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'04',219X)                                                                                            00730000
+/*                                                                      00340000                                                         00740000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                00750000
+//STEP005  EXEC PGM=SORT                                                00030000                                                         00760000
+//SORTIN   DD  DSN=TEST.U16776.PATI.AUGSEP16,DISP=SHR                                                                                    00770000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI05.REC01.DT0221,                                                                                  00780000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          00790000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                00800000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            00810000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         00820000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         00830000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         00840000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         00850000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         00860000
+//SYSIN DD  *                                                           00240000                                                         00870000
+    SORT FIELDS=COPY                                                    00260000                                                         00880000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         00890000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'05',219X)                                                                                            00900000
+/*                                                                      00340000                                                         00910000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                00920000
+//STEP006  EXEC PGM=SORT                                                00030000                                                         00930000
+//SORTIN   DD  DSN=TEST.U16776.PATI.OCTNOV16,DISP=SHR                                                                                    00940000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI06.REC01.DT0221,                                                                                  00950000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          00960000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                00970000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            00980000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         00990000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         01000000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         01010000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         01020000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         01030000
+//SYSIN DD  *                                                           00240000                                                         01040000
+    SORT FIELDS=COPY                                                    00260000                                                         01050000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         01060000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'06',219X)                                                                                            01070000
+/*                                                                      00340000                                                         01080000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                01090000
+//STEP007  EXEC PGM=SORT                                                00030000                                                         01100000
+//SORTIN   DD  DSN=TEST.U16776.PATI.DEC2016,DISP=SHR                                                                                     01110000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI07.REC01.DT0221,                                                                                  01120000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          01130000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                01140000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            01150000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         01160000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         01170000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         01180000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         01190000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         01200000
+//SYSIN DD  *                                                           00240000                                                         01210000
+    SORT FIELDS=COPY                                                    00260000                                                         01220000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         01230000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'07',219X)                                                                                            01240000
+/*                                                                      00340000                                                         01250000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                01260000
+//STEP008  EXEC PGM=SORT                                                00030000                                                         01270000
+//SORTIN   DD  DSN=TEST.U16776.PATI.JANFEB17,DISP=SHR                                                                                    01280000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI08.REC01.DT0221,                                                                                  01290000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          01300000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                01310000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            01320000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         01330000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         01340000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         01350000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         01360000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         01370000
+//SYSIN DD  *                                                           00240000                                                         01380000
+    SORT FIELDS=COPY                                                    00260000                                                         01390000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         01400000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'08',219X)                                                                                            01410000
+/*                                                                      00340000                                                         01420000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                01430000
+//STEP009  EXEC PGM=SORT                                                00030000                                                         01440000
+//SORTIN   DD  DSN=TEST.U16776.PATI.MARAPR17,DISP=SHR                                                                                    01450000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI09.REC01.DT0221,                                                                                  01460000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          01470000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                01480000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            01490000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         01500000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         01510000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         01520000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         01530000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         01540000
+//SYSIN DD  *                                                           00240000                                                         01550000
+    SORT FIELDS=COPY                                                    00260000                                                         01560000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         01570000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'09',219X)                                                                                            01580000
+/*                                                                      00340000                                                         01590000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                01600000
+//STEP010  EXEC PGM=SORT                                                00030000                                                         01610000
+//SORTIN   DD  DSN=TEST.U16776.PATI.MAYJUN17,DISP=SHR                                                                                    01620000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI10.REC01.DT0221,                                                                                  01630000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          01640000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                01650000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            01660000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         01670000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         01680000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         01690000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         01700000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         01710000
+//SYSIN DD  *                                                           00240000                                                         01720000
+    SORT FIELDS=COPY                                                    00260000                                                         01730000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         01740000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'10',219X)                                                                                            01750000
+/*                                                                      00340000                                                         01760000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                01770000
+//STEP011  EXEC PGM=SORT                                                00030000                                                         01780000
+//SORTIN   DD  DSN=TEST.U16776.PATI.JULAUG17,DISP=SHR                                                                                    01790000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI11.REC01.DT0221,                                                                                  01800000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          01810000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                01820000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            01830000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         01840000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         01850000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         01860000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         01870000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         01880000
+//SYSIN DD  *                                                           00240000                                                         01890000
+    SORT FIELDS=COPY                                                    00260000                                                         01900000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         01910000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'11',219X)                                                                                            01920000
+/*                                                                      00340000                                                         01930000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                01940000
+//STEP012  EXEC PGM=SORT                                                00030000                                                         01950000
+//SORTIN   DD  DSN=TEST.U16776.PATI.SEPOCT17,DISP=SHR                                                                                    01960000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI12.REC01.DT0221,                                                                                  01970000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          01980000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                01990000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            02000000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         02010000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         02020000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         02030000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         02040000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         02050000
+//SYSIN DD  *                                                           00240000                                                         02060000
+    SORT FIELDS=COPY                                                    00260000                                                         02070000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         02080000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'12',219X)                                                                                            02090000
+/*                                                                      00340000                                                         02100000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                02110000
+//STEP013  EXEC PGM=SORT                                                00030000                                                         02120000
+//SORTIN   DD  DSN=TEST.U16776.PATI.NOVDEC17,DISP=SHR                                                                                    02130000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI13.REC01.DT0221,                                                                                  02140000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          02150000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                02160000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            02170000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         02180000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         02190000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         02200000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         02210000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         02220000
+//SYSIN DD  *                                                           00240000                                                         02230000
+    SORT FIELDS=COPY                                                    00260000                                                         02240000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         02250000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'13',219X)                                                                                            02260000
+/*                                                                      00340000                                                         02270000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                02280000
+//STEP014  EXEC PGM=SORT                                                00030000                                                         02290000
+//SORTIN   DD  DSN=TEST.U16776.PATI.JANFEB18,DISP=SHR                                                                                    02300000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI14.REC01.DT0221,                                                                                  02310000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          02320000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                02330000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            02340000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         02350000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         02360000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         02370000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         02380000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         02390000
+//SYSIN DD  *                                                           00240000                                                         02400000
+    SORT FIELDS=COPY                                                    00260000                                                         02410000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         02420000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'14',219X)                                                                                            02430000
+/*                                                                      00340000                                                         02440000
+//* EXTRACT RETYPE 01 PATIENTS FROM ALL 15 FILES FOR CCRO                                                                                02450000
+//STEP015  EXEC PGM=SORT                                                00030000                                                         02460000
+//SORTIN   DD  DSN=TEST.U16776.PATI.MARAPR18,DISP=SHR                                                                                    02470000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI15.REC01.DT0221,                                                                                  02480000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          02490000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                02500000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            02510000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         02520000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         02530000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         02540000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         02550000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         02560000
+//SYSIN DD  *                                                           00240000                                                         02570000
+    SORT FIELDS=COPY                                                    00260000                                                         02580000
+    INCLUDE COND=(18,02,CH,EQ,C'01')                                    00260000                                                         02590000
+    OUTREC FIELDS=(1,5,2X,6,12,2X,C'15',219X)                                                                                            02600000
+/*                                                                      00340000                                                         02610000
+//* COMBILE ALL 15 FILES                                                                                                                 02620000
+//STEP015  EXEC PGM=SORT                                                00030000                                                         02630000
+//SORTIN   DD  DSN=TESTNC.LIF.CCRO.PATI01.REC01.DT0221,DISP=SHR                                                                          02640000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI02.REC01.DT0221,DISP=SHR                                                                          02650000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI03.REC01.DT0221,DISP=SHR                                                                          02660000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI04.REC01.DT0221,DISP=SHR                                                                          02670000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI05.REC01.DT0221,DISP=SHR                                                                          02680000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI06.REC01.DT0221,DISP=SHR                                                                          02690000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI07.REC01.DT0221,DISP=SHR                                                                          02700000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI08.REC01.DT0221,DISP=SHR                                                                          02710000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI09.REC01.DT0221,DISP=SHR                                                                          02720000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI10.REC01.DT0221,DISP=SHR                                                                          02730000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI11.REC01.DT0221,DISP=SHR                                                                          02740000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI12.REC01.DT0221,DISP=SHR                                                                          02750000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI13.REC01.DT0221,DISP=SHR                                                                          02760000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI14.REC01.DT0221,DISP=SHR                                                                          02770000
+//         DD  DSN=TESTNC.LIF.CCRO.PATI15.REC01.DT0221,DISP=SHR                                                                          02780000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI.REC01.ALL,                                                                                       02790000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          02800000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                02810000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            02820000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         02830000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         02840000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         02850000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         02860000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         02870000
+//SYSIN DD  *                                                           00240000                                                         02880000
+    SORT FIELDS=COPY                                                    00260000                                                         02890000
+/*                                                                      00340000                                                         02900000
+//* EXTRACT RECTYPE 51 & 55 FROM MARAPR18 FILE FOR CCRO                 00340000                                                         02910000
+//STEP002  EXEC PGM=SORT                                                00030000                                                         02920000
+//SORTIN   DD  DSN=TEST.U16776.PATI.MARAPR18,DISP=SHR                                                                                    02930000
+//SORTOUT  DD  DSN=TESTNC.LIF.CCRO.PATI.REC5155.DT0221,                                                                                  02940000
+//             DISP=(,CATLG,DELETE),UNIT=SYSDA,                                                                                          02950000
+//             SPACE=(CYL,(50,100),RLSE),                                                                                                02960000
+//             DCB=(DSORG=PS,RECFM=FB,LRECL=240,BLKSIZE=2400)                                                                            02970000
+//SORTWK01   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00100000                                                         02980000
+//SORTWK02   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00110000                                                         02990000
+//SORTWK03   DD  UNIT=SYSDA,SPACE=(CYL,(100,100))                       00120000                                                         03000000
+//SYSOUT   DD  SYSOUT=*                                                 00220000                                                         03010000
+//SYSPRINT DD  SYSOUT=*                                                 00230000                                                         03020000
+//SYSIN DD  *                                                           00240000                                                         03030000
+    SORT FIELDS=COPY                                                    00260000                                                         03040000
+    INCLUDE COND=(18,02,CH,EQ,C'51',OR,18,02,CH,EQ,C'55')               00260000                                                         03050000
+/*                                                                      00340000                                                         03060000
+//**********************************************************************                                                                 03070000
+//* THIS JOB SORTS THE INPUT FILE AND REMOVES ALL DUPLICATES AND       *                                                                 03080000
+//* WRITES 1. DISTINCT  RECORDS IN SORTOUT                             *                                                                 03090000
+//*        2. DUPLICATE RECORDS IN SORTXSUM                            *                                                                 03100000
+//**********************************************************************                                                                 03110000
+//STEP003  EXEC PGM=ICETOOL                                                                                                              03120000
+//TOOLMSG  DD SYSOUT=*                                                                                                                   03130000
+//DFSMSG   DD SYSOUT=*                                                                                                                   03140000
+//SYSPRINT DD SYSOUT=*                                                                                                                   03150000
+//SYSUDUMP DD SYSOUT=*                                                                                                                   03160000
+//REPORT1  DD SYSOUT=*                                                                                                                   03170000
+//SORTIN   DD DISP=SHR,DSN=TESTNC.LIF.CCRO.PATI.REC01.ALL                                                                                03180000
+//SORTOUT  DD DSN=TEST.CASEMIX.CCRO.DIST01,                                                                                              03190000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),                                                                       03200000
+//            DCB=(RECFM=FB,LRECL=240,BLKSIZE=0)                                                                                         03210000
+//SORTXSUM DD DSN=TEST.CASEMIX.CCRO.DUPL01,                                                                                              03220000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),                                                                       03230000
+//            DCB=(RECFM=FB,LRECL=240,BLKSIZE=0)                                                                                         03240000
+//SORTWK01 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03250000
+//SORTWK02 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03260000
+//SORTWK03 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03270000
+//SORTWK04 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03280000
+//SORTWK05 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03290000
+//TOOLIN   DD *                                                                                                                          03300000
+  SELECT FROM(SORTIN) TO(SORTOUT)-                                                                                                       03310000
+    ON(6,17,CH) FIRST DISCARD(SORTXSUM)                                                                                                  03320000
+/*                                                                                                                                       03330000
+//*                                                                                                                                      03340000
+//**********************************************************************                                                                 03350000
+//STEP002  EXEC PGM=ICETOOL                                                                                                              03360000
+//TOOLMSG  DD SYSOUT=*                                                                                                                   03370000
+//DFSMSG   DD SYSOUT=*                                                                                                                   03380000
+//SYSPRINT DD SYSOUT=*                                                                                                                   03390000
+//SYSUDUMP DD SYSOUT=*                                                                                                                   03400000
+//REPORT1  DD SYSOUT=*                                                                                                                   03410000
+//SORTIN   DD DISP=SHR,DSN=TESTNC.LIF.CCRO.PATI.REC5155.DT0221                                                                           03420000
+//SORTOUT  DD DSN=TEST.CASEMIX.CCRO.DIST02,                                                                                              03430000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),                                                                       03440000
+//            DCB=(RECFM=FB,LRECL=240,BLKSIZE=0)                                                                                         03450000
+//SORTXSUM DD DSN=TEST.CASEMIX.CCRO.DUPL02,                                                                                              03460000
+//            DISP=(NEW,CATLG,CATLG),UNIT=SYSDA,SPACE=(CYL,(2,2)),                                                                       03470000
+//            DCB=(RECFM=FB,LRECL=240,BLKSIZE=0)                                                                                         03480000
+//SORTWK01 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03490000
+//SORTWK02 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03500000
+//SORTWK03 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03510000
+//SORTWK04 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03520000
+//SORTWK05 DD UNIT=DISK,SPACE=(CYL,(20,5),RLSE)                                                                                          03530000
+//TOOLIN   DD *                                                                                                                          03540000
+  SELECT FROM(SORTIN) TO(SORTOUT)-                                                                                                       03550000
+    ON(6,17,CH) FIRST DISCARD(SORTXSUM)                                                                                                  03560000
+/*                                                                                                                                       03570000
+//*                                                                                                                                      03580000
+//* COMPARE RECTYPE 01 PATIENTS WITH RECTYPE 51 & 55 PATIENTS           00340000                                                         03590000
+//STEP30 EXEC PGM=SORT                                                                                                                   03600000
+//SYSOUT DD SYSOUT=*                                                                                                                     03610000
+//SYSPRIN DD SYSOUT=*                                                                                                                    03620000
+//SORTJNF1 DD DSN=TEST.CASEMIX.CCRO.DIST01,DISP=SHR                                                                                      03630000
+//SORTJNF2 DD DSN=TEST.CASEMIX.CCRO.DIST02,DISP=SHR                                                                                      03640000
+//MATCH    DD DSN=TESTMR.MATCH.CCRO01.DT0221,           /*INNER JOIN                                                                     03650000
+//             DISP=(NEW,CATLG,DELETE),                                                                                                  03660000
+//             SPACE=(CYL,(50,25),RLSE),                                                                                                 03670000
+//             UNIT=SYSDA                                                                                                                03680000
+//NOMATCH  DD DSN=TESTMR.UNMATCH.CCRO01.DT0221,         /*LEFT OUTER                                                                     03690000
+//             DISP=(NEW,CATLG,DELETE),                                                                                                  03700000
+//             SPACE=(CYL,(50,25),RLSE),                                                                                                 03710000
+//             UNIT=SYSDA                                                                                                                03720000
+//NOMATCH2 DD DSN=TESTMR.UNMATCH.CCRO.DT0221,            /*RIGHT OUTER                                                                   03730000
+//             DISP=(NEW,CATLG,DELETE),                                                                                                  03740000
+//             SPACE=(CYL,(50,25),RLSE),                                                                                                 03750000
+//             UNIT=SYSDA                                                                                                                03760000
+//SYSIN DD *                                                                                                                             03770000
+  JOINKEYS FILE=F1,FIELDS=(8,12,A)                                                                                                       03780000
+  JOINKEYS FILE=F2,FIELDS=(6,12,A)                                                                                                       03790000
+  JOIN UNPAIRED,F1,F2                                                                                                                    03800000
+  REFORMAT FIELDS=(?,F1:1,25,F2:1,25)                                                                                                    03810000
+  OPTION COPY                                                                                                                            03820000
+  OUTFIL FNAMES=MATCH,INCLUDE=(1,1,CH,EQ,C'B'),BUILD=(1:2,25)                                                                            03830000
+  OUTFIL FNAMES=NOMATCH,INCLUDE=(1,1,CH,EQ,C'1'),BUILD=(1:2,25)                                                                          03840000
+  OUTFIL FNAMES=NOMATCH2,INCLUDE=(1,1,CH,EQ,C'2'),BUILD=(1:27,25)                                                                        03850000
+/*                                                                                                                                       03860000
+//**                                                                                                                                     03870000

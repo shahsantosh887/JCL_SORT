@@ -1,0 +1,26 @@
+//LYI6892Z JOB (0844,00000000),'OVERLAY',                                                                                                        
+//             CLASS=T,PRTY=15,                                                                                                                  
+//             REGION=0K,                                                                                                                        
+//             MSGCLASS=X,                                                                                                                       
+//             NOTIFY=LYI6892                                                                                                                    
+//*********************************************                                                                                                  
+//STEP01 EXEC PGM=SORT,PARM='CENTWIN=80'                                                                                                         
+//SYSOUT DD SYSOUT=*                                                                                                                             
+//SYSPRIN DD SYSOUT=*                                                                                                                            
+//SORTIN DD  DSN=EAZ7541.UBATCH.INV.FAC.ACCT.TEMP,DISP=SHR                                                                                       
+//SORTOUT DD  DSN=EAZ7541.UBATCH.INVOICE.EXT001,                                                                                                 
+//             DISP=(NEW,CATLG,DELETE),                                                                                                          
+//             UNIT=SYSDA,                                                                                                                       
+//             DSORG=PS,                                                                                                                         
+//             RECFM=FB,                                                                                                                         
+//             LRECL=352,                                                                                                                        
+//             BLKSIZE=0,                                                                                                                        
+//             SPACE=(CYL,(50,25),RLSE)                                                                                                          
+//SORTMK01 DD  SPACE=(CYL,(35),RLSE),                                                                                                            
+//             UNIT=SYSDA                                                                                                                        
+//SORTWK02 DD  SPACE=(CYL,(35),RLSE),                                                                                                            
+//             UNIT=SYSDA                                                                                                                        
+//SYSIN   DD *                                                                                                                                   
+  SORT FIELDS=COPY                                                                                                                               
+  OUTREC IFTHEN=(WHEN=(86,3,CH,EQ,C'   '),OVERLAY=(86:C'001'))                                                                                   
+/*                                                                                                                                               
